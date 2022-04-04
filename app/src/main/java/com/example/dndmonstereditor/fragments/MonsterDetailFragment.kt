@@ -108,11 +108,20 @@ class MonsterDetailFragment : Fragment() {
     }
 
     private fun bind(monsterDetails: MonsterDetails){
+
+        val helper=MonsterDetailHelper(monsterDetails)
         binding.name.text=monsterDetails.name
         binding.ACET.setText(monsterDetails.armor_class.toString())
         binding.HPET.setText(monsterDetails.hit_points.toString())
 
         binding.CRET.setText(monsterDetails.challenge_rating.toString())
+
+        binding.strET.setText((helper.getProficiency("Saving Throw: STR")?:((monsterDetails.strength-10)/2)).toString())
+        binding.dexET.setText((helper.getProficiency("Saving Throw: DEX")?:((monsterDetails.dexterity-10)/2)).toString())
+        binding.conET.setText((helper.getProficiency("Saving Throw: CON")?:((monsterDetails.constitution-10)/2)).toString())
+        binding.intelET.setText((helper.getProficiency("Saving Throw: INT")?:((monsterDetails.intelligence-10)/2)).toString())
+        binding.wisET.setText((helper.getProficiency("Saving Throw: WIS")?:((monsterDetails.wisdom-10)/2)).toString())
+        binding.chaET.setText((helper.getProficiency("Saving Throw: CHA")?:((monsterDetails.charisma-10)/2)).toString())
 
         binding.update.setOnClickListener {
             binding.CRET.setText(CRCalculator(monsterDetails).getCR().toString().take(4))

@@ -13,11 +13,6 @@ class CRCalculator(private val monster:MonsterDetails) {
         val hp= monster?.hit_points ?: 0
         val toHit= helper.maxToHit()
 
-        Log.d("CRC", "damage: " + damage)
-        Log.d("CRC", "ac: " + ac)
-        Log.d("CRC", "hp: " + hp)
-        Log.d("CRC", "toHit: " + toHit)
-
         val acCR = when (ac) {
             in 0..12 -> 0.125
             13-> 0.5
@@ -46,6 +41,11 @@ class CRCalculator(private val monster:MonsterDetails) {
             4 ->1.0
             else->(toHit-4)*2.0
         }
+
+        Log.d("CRC", "damage: " + damageCR)
+        Log.d("CRC", "ac: " + acCR)
+        Log.d("CRC", "hp: " + hpCR)
+        Log.d("CRC", "toHit: " + toHitCR)
 
         return (acCR+hpCR+damageCR+toHitCR)/4.0
     }

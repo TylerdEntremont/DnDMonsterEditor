@@ -70,6 +70,169 @@
         android:inputType="number"
         />
 
+    <TextView
+        android:id="@+id/saves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saves"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintBottom_toTopOf="@id/con"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/str"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/AC"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/dex"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/dex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dex"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/AC"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/con"
+        app:layout_constraintLeft_toRightOf="@id/str"
+        />
+
+    <TextView
+        android:id="@+id/con"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/con"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/AC"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/intel"
+        app:layout_constraintLeft_toRightOf="@id/dex"
+        />
+
+    <TextView
+        android:id="@+id/intel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intel"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/AC"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/wisET"
+        app:layout_constraintLeft_toRightOf="@id/con"
+        />
+
+    <TextView
+        android:id="@+id/wis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wis"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/AC"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/cha"
+        app:layout_constraintLeft_toRightOf="@id/intel"
+        />
+
+    <TextView
+        android:id="@+id/cha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cha"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/AC"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/wis"
+        />
+
+
+    <EditText
+        android:id="@+id/strET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholderNum"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/str"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/dex"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:inputType="number"
+        />
+
+    <EditText
+        android:id="@+id/dexET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholderNum"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/dex"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/con"
+        app:layout_constraintLeft_toRightOf="@id/str"
+        android:inputType="number"
+        />
+
+    <EditText
+        android:id="@+id/conET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholderNum"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/con"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/intel"
+        app:layout_constraintLeft_toRightOf="@id/dex"
+        android:inputType="number"
+        />
+
+    <EditText
+        android:id="@+id/intelET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholderNum"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/intel"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/wis"
+        app:layout_constraintLeft_toRightOf="@id/con"
+        android:inputType="number"
+        />
+
+    <EditText
+        android:id="@+id/wisET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholderNum"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/wis"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toLeftOf="@id/cha"
+        app:layout_constraintLeft_toRightOf="@id/intel"
+        android:inputType="number"
+        />
+
+    <EditText
+        android:id="@+id/chaET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholderNum"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@id/cha"
+        app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/wis"
+        android:inputType="number"
+        />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/upperGuideLine"
         android:layout_width="wrap_content"

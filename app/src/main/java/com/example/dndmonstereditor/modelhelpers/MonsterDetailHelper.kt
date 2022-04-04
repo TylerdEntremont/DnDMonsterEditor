@@ -90,4 +90,14 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
 
     }
 
+    fun getProficiency(prof:String):Int?{
+        for (item in monster.proficiencies){
+            if (item.proficiency?.name == prof){
+                return item.value
+            }
+        }
+        return null
+
+    }
+
 }

@@ -27,4 +27,11 @@
     <string name="save">Save</string>
     <string name="update">Update</string>
     <string name="enter_name_to_save">Enter Name to Save</string>
+    <string name="str">STR</string>
+    <string name="dex">DEX</string>
+    <string name="con">CON</string>
+    <string name="intel">INT</string>
+    <string name="wis">WIS</string>
+    <string name="cha">CHA</string>
+    <string name="saves">saves</string>
 </resources>
