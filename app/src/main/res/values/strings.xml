@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">DnDMonsterEditor</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Main Fragment</string>
+    <string name="second_fragment_label">Monster List Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="monsterdetailfragment">Monster Detail Fragment</string>
+    <string name="holder">Place Holder</string>
+    <string name="AC">AC</string>
+    <string name="HP">HP</string>
+    <string name="placeholderNum">00</string>
+    <string name="actions">Actions</string>
+    <string name="cr">CR</string>
+    <string name="full_list_from_srd">Full List From SRD</string>
+    <string name="modified_monsters">Modified Monsters</string>
+    <string name="legendary_actions">Legendary Actions</string>
+    <string name="to_hit">To Hit</string>
+    <string name="damage_dice">Damage</string>
+    <string name="abilities">Abilities</string>
+    <string name="save">Save</string>
+    <string name="update">Update</string>
+</resources>

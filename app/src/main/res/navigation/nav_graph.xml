@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/MainFragment">
+
+    <fragment
+        android:id="@+id/MainFragment"
+        android:name="com.example.dndmonstereditor.fragments.MainFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_MainFragment_to_MonsterListFragment"
+            app:destination="@id/MonsterListFragment" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MonsterListFragment"
+        android:name="com.example.dndmonstereditor.fragments.MonsterListFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_monster_list">
+
+        <action
+            android:id="@+id/action_MonsterListFragment_to_MonsterDetailsFragment"
+            app:destination="@id/MonsterDetailsFragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/MonsterDetailsFragment"
+        android:name="com.example.dndmonstereditor.fragments.MonsterDetailFragment"
+        android:label="@string/monsterdetailfragment"
+        tools:layout="@layout/fragment_monster_detail">
+
+    </fragment>
+
+</navigation>

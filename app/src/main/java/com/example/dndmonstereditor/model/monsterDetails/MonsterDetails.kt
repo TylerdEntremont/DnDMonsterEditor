@@ -1,0 +1,35 @@
+package com.example.dndmonstereditor.model.monsterDetails
+
+
+data class MonsterDetails(
+    val actions: List<Action>,
+    val alignment: String,
+    var armor_class: Int=0 ,
+    val challenge_rating: Float,
+    val charisma: Int,
+    val condition_immunities: List<DamageType>,
+    val constitution: Int,
+    val damage_immunities: List<String>,
+    val damage_resistances: List<String>,
+    val damage_vulnerabilities: List<String>,
+    val dexterity: Int,
+    val forms: List<Form>,
+    val hit_dice: String,
+    var hit_points: Int=0,
+    val index: String,
+    val intelligence: Int,
+    val languages: String,
+    val legendary_actions: List<LegendaryAction>,
+    val name: String,
+    val proficiencies: List<Proficiency>,
+    val reactions: List<Action>,
+    val senses: Senses,
+    val size: String,
+    val special_abilities: List<SpecialAbility>,
+    val speed: Speed,
+    val strength: Int,
+    val type: String,
+    val url: String,
+    val wisdom: Int,
+    val xp: Int
+)
