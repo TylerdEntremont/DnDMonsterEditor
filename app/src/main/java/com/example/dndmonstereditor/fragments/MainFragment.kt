@@ -34,6 +34,10 @@ class MainFragment : Fragment() {
         binding.buttonFL.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_MonsterListFragment)
         }
+
+        binding.buttonSI.setOnClickListener {
+            findNavController().navigate(R.id.action_MainFragment_to_DBList)
+        }
     }
 
 }

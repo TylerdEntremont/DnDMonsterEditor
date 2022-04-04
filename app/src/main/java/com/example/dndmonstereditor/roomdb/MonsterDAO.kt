@@ -7,8 +7,8 @@ import io.reactivex.Single
 @Dao
 interface MonsterDAO {
 
-    @Query ("SELECT uniqueName FROM savedMonsterDB")
-    fun getNames():Single<List<String>>
+    @Query ("SELECT * FROM savedMonsterDB")
+    fun getNames():Single<List<MonsterDBItem>>
 
     @RewriteQueriesToDropUnusedColumns
     @Query ("SELECT * FROM savedMonsterDB WHERE uniqueName is :name")

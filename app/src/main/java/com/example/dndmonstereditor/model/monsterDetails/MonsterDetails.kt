@@ -4,8 +4,8 @@ package com.example.dndmonstereditor.model.monsterDetails
 data class MonsterDetails(
     val actions: List<Action>,
     val alignment: String,
-    var armor_class: Int=0 ,
-    val challenge_rating: Float,
+    var armor_class: Int=0,
+    var challenge_rating: Float,
     val charisma: Int,
     val condition_immunities: List<DamageType>,
     val constitution: Int,

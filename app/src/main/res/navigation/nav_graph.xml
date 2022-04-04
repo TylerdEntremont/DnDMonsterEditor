@@ -15,6 +15,23 @@
             android:id="@+id/action_MainFragment_to_MonsterListFragment"
             app:destination="@id/MonsterListFragment" />
 
+        <action
+            android:id="@+id/action_MainFragment_to_DBList"
+            app:destination="@id/MonsterDBListFragment"/>
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/MonsterDBListFragment"
+        android:name="com.example.dndmonstereditor.fragments.DBList"
+        android:label="DBList"
+        tools:layout="@layout/fragment_db_list">
+
+        <action
+            android:id="@+id/action_DBList_to_MonsterDetailsFragment"
+            app:destination="@id/MonsterDetailsFragment" />
 
     </fragment>
 

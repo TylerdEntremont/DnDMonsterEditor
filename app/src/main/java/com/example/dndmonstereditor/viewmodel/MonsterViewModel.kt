@@ -7,8 +7,11 @@ import androidx.room.Room
 import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
 import com.example.dndmonstereditor.rest.MonsterRepository
 import com.example.dndmonstereditor.roomdb.MonsterDB
+import com.example.dndmonstereditor.roomdb.MonsterDBItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -52,6 +55,18 @@ class MonsterViewModel @Inject constructor (
                 _monstersLiveData.postValue(state)
             }
         }
+    }
+
+    fun saveToDataBase(data:MonsterDBItem) {
+        monsterDB.monsterDAO().insert(data)
+    }
+
+    fun getNames(){
+        monsterDB.monsterDAO().getNames().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { response -> _monstersLiveData.postValue(States.SUCCESSNAME(response)) }
+            .apply {
+            }
     }
 
 }

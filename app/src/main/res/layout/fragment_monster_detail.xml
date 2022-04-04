@@ -230,5 +230,16 @@
         android:layout_margin="10dp"
         />
 
+    <EditText
+        android:id="@+id/saveName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_name_to_save"
+        app:layout_constraintTop_toBottomOf="@id/lowerGuideLine"
+        app:layout_constraintBottom_toTopOf="@+id/CRET"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

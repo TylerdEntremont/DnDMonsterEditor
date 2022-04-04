@@ -8,5 +8,6 @@ data class SavedMonsterChanges(
     val name: String,
     val ac:Int,
     val hp:Int,
-    val attacks:String
+    val attacks:String,
+    val cr:String
 ):Parcelable

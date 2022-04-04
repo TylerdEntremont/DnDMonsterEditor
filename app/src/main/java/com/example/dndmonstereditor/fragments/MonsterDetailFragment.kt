@@ -20,6 +20,7 @@ import com.example.dndmonstereditor.model.MonsterFromList
 import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
 import com.example.dndmonstereditor.modelhelpers.MonsterDetailHelper
 import com.example.dndmonstereditor.modelhelpers.SavedMonsterChanges
+import com.example.dndmonstereditor.roomdb.MonsterDBItem
 import com.example.dndmonstereditor.viewmodel.MonsterViewModel
 import com.example.dndmonstereditor.viewmodel.States
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MonsterDetailFragment : Fragment() {
 
     private lateinit var monsterFromList:MonsterFromList
+    private var changes:MonsterDBItem? = null
 
     private val monsterViewModel by viewModels<MonsterViewModel>()
 
@@ -45,6 +47,7 @@ class MonsterDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
            monsterFromList = it.getParcelable("Monster")!!
+            changes=it.getParcelable("Changes")
         }
 
     }
@@ -62,6 +65,16 @@ class MonsterDetailFragment : Fragment() {
                 }
                 is States.SUCCESSDET -> {
                     val monster = state.response
+
+                    if (changes!=null){
+                        val helper = MonsterDetailHelper(monster)
+                        helper.putAttacksString(changes!!.monster.attacks)
+                        monster.armor_class= changes!!.monster.ac
+                        monster.hit_points= changes!!.monster.hp
+                        monster.challenge_rating = changes!!.monster.cr.toFloat()
+                        binding.saveName.setText(changes!!.uniqueName)
+                    }
+
                     bind(monster)
                     abilityItemAdapter=AbilityItemAdapter(monster.special_abilities)
                     lActionItemAdapter=LActionItemAdapter(monster.legendary_actions)
@@ -135,10 +148,13 @@ class MonsterDetailFragment : Fragment() {
                 monsterDetails.index,
                 monsterDetails.armor_class,
                 monsterDetails.hit_points,
-                attacks
+                attacks,
+                binding.CRET.text.toString()
             )
 
+            monsterViewModel.saveToDataBase(MonsterDBItem(binding.saveName.text.toString(),changes))
 
+            Toast.makeText(context,"Saved as "+binding.saveButton.text.toString(),Toast.LENGTH_LONG)
 
         }
     }
