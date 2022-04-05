@@ -1,23 +1,17 @@
 package com.example.dndmonstereditor.viewmodel
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.room.Room
-import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
 import com.example.dndmonstereditor.rest.MonsterRepository
 import com.example.dndmonstereditor.roomdb.MonsterDB
 import com.example.dndmonstereditor.roomdb.MonsterDBItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.observeOn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,7 +24,7 @@ class MonsterViewModel @Inject constructor (
     private val _monstersLiveData: MutableLiveData<States> = MutableLiveData(States.LOADING)
     val monstersLiveData : LiveData<States> get() = _monstersLiveData
 
-    private val monsterDB= context?.let { Room.databaseBuilder(it, MonsterDB::class.java,"savedMonsterDB").allowMainThreadQueries().build()}
+    private val monsterDB= context.let { Room.databaseBuilder(it, MonsterDB::class.java,"savedMonsterDB").allowMainThreadQueries().build()}
 
 
     fun getMonsterList(){
@@ -62,11 +56,15 @@ class MonsterViewModel @Inject constructor (
     }
 
     fun getNames(){
-        monsterDB.monsterDAO().getNames().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { response -> _monstersLiveData.postValue(States.SUCCESSNAME(response)) }
-            .apply {
-            }
+
+        _monstersLiveData.postValue(States.LOADING)
+        viewModelScope.launch(coroutineDispatcher){
+            monsterDB.monsterDAO().getNames()
+                .catch{_monstersLiveData.postValue((States.ERROR(it)))}
+                .collect { response->
+                    _monstersLiveData.postValue(States.SUCCESSNAME(response))
+                }
+        }
     }
 
 }

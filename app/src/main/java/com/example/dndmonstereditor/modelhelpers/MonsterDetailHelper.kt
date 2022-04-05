@@ -2,6 +2,7 @@ package com.example.dndmonstereditor.modelhelpers
 
 import com.example.dndmonstereditor.model.monsterDetails.Action
 import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
+import com.example.dndmonstereditor.model.monsterDetails.Proficiency
 
 class MonsterDetailHelper (val monster: MonsterDetails) {
 
@@ -85,6 +86,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
                 val split2=split1[i].split(",")
                 action.attack_bonus=split2[0].toInt()
                 action.damage[0].damage_dice=split2[1]
+                i++
             }
         }
 
@@ -97,7 +99,15 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
             }
         }
         return null
+    }
 
+    fun getProficiencyObject(prof:String):Proficiency?{
+        for (item in monster.proficiencies){
+            if (item.proficiency?.name == prof){
+                return item
+            }
+        }
+        return null
     }
 
 }

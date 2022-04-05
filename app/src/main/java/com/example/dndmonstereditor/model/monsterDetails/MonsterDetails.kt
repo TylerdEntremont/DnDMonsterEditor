@@ -21,7 +21,7 @@ data class MonsterDetails(
     val languages: String,
     val legendary_actions: List<LegendaryAction>,
     val name: String,
-    val proficiencies: List<Proficiency>,
+    var proficiencies: MutableList<Proficiency>,
     val reactions: List<Action>,
     val senses: Senses,
     val size: String,

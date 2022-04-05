@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 
 
 @Database(entities = [MonsterDBItem::class],version=1, exportSchema = false)
-abstract class MonsterDB (): RoomDatabase() {
+abstract class MonsterDB: RoomDatabase() {
 
     abstract fun monsterDAO(): MonsterDAO
 
