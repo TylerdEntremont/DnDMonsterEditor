@@ -39,7 +39,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         }
             for (action in monster.actions){
                 if (action.attack_bonus!=null){
-                    return listOf(action.name!!)
+                    return listOf(action.name)
                 }
             }
         return listOf()
@@ -56,7 +56,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
     }
 
 
-    fun findActionByName(name:String): Action? {
+    private fun findActionByName(name:String): Action? {
         if (monster.actions!=null) {
             for (action in monster.actions) {
                 if (action.name ==name) return action

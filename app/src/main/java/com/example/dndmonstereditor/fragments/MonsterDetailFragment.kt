@@ -323,7 +323,7 @@ class MonsterDetailFragment : Fragment() {
 
             monsterViewModel.saveToDataBase(MonsterDBItem(binding.saveName.text.toString(),changes))
 
-            Toast.makeText(context,"Saved as "+binding.saveButton.text.toString(),Toast.LENGTH_LONG)
+            Toast.makeText(context,"Saved as "+binding.saveButton.text.toString(),Toast.LENGTH_LONG).show()
 
         }
     }

@@ -9,9 +9,9 @@ class CRCalculator(private val monster:MonsterDetails) {
 
     fun getCR (): Double {
         val helper = MonsterDetailHelper(monster)
-        val damage =  helper.parseMultiAttack(helper.findMultiAttack()) ?.let { helper.damagePerTurn(it) }
-        val ac= monster?.armor_class
-        val hp= monster?.hit_points
+        val damage = helper.parseMultiAttack(helper.findMultiAttack()).let { helper.damagePerTurn(it) }
+        val ac= monster.armor_class
+        val hp= monster.hit_points
         val toHit= helper.maxToHit()
 
         val strSV=((helper.getProficiency("Saving Throw: STR")?:((monster.strength-10)/2)))
@@ -57,11 +57,6 @@ class CRCalculator(private val monster:MonsterDetails) {
             3 -> 1.0
             else -> (save-3)*2.0
         }
-
-        Log.d("CRC", "damage: " + damageCR)
-        Log.d("CRC", "ac: " + acCR)
-        Log.d("CRC", "hp: " + hpCR)
-        Log.d("CRC", "toHit: " + toHitCR)
 
         return ((acCR+hpCR+saveCR)/3.0+(damageCR+toHitCR)/2.0)/2.0
     }

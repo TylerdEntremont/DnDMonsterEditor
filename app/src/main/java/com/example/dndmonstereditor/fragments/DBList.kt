@@ -12,13 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dndmonstereditor.R
 import com.example.dndmonstereditor.adapter.DBMonsterAdapter
-import com.example.dndmonstereditor.adapter.MonsterListItemAdapter
 import com.example.dndmonstereditor.adapter.OnChangedMonsterClickListener
-import com.example.dndmonstereditor.adapter.OnMonsterClickListener
 import com.example.dndmonstereditor.databinding.FragmentDbListBinding
-import com.example.dndmonstereditor.databinding.FragmentMonsterListBinding
 import com.example.dndmonstereditor.model.MonsterFromList
-import com.example.dndmonstereditor.modelhelpers.SavedMonsterChanges
 import com.example.dndmonstereditor.roomdb.MonsterDBItem
 import com.example.dndmonstereditor.viewmodel.MonsterViewModel
 import com.example.dndmonstereditor.viewmodel.States

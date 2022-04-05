@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dndmonstereditor.databinding.MonsterListItemBinding
 import com.example.dndmonstereditor.model.MonsterFromList
-import com.example.dndmonstereditor.model.MonstersList
-import retrofit2.Response
 
 class MonsterListItemAdapter(
     private val monsterClickListener: OnMonsterClickListener,
