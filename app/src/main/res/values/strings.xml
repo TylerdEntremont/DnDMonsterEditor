@@ -34,4 +34,6 @@
     <string name="wis">WIS</string>
     <string name="cha">CHA</string>
     <string name="saves">saves</string>
+    <string name="d">D</string>
+    <string name="plus">+</string>
 </resources>

@@ -29,12 +29,12 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         if (multiAttack!=null) {
             val attacks = mutableListOf<String>()
 
-            for (options in multiAttack.options?.from!!) {
-                if (options.a != null) for (x in 1..options.a.count) attacks.add(options.a.name)
-                if (options.b != null) for (x in 1..options.b.count) attacks.add(options.b.name)
-                if (options.c != null) for (x in 1..options.c.count) attacks.add(options.c.name)
-                if (options.d != null) for (x in 1..options.d.count) attacks.add(options.d.name)
-                if (options.e != null) for (x in 1..options.e.count) attacks.add(options.e.name)
+            for (options in multiAttack.options.from!!) {
+                for (x in 1..options.a.count) attacks.add(options.a.name)
+                for (x in 1..options.b.count) attacks.add(options.b.name)
+                for (x in 1..options.c.count) attacks.add(options.c.name)
+                for (x in 1..options.d.count) attacks.add(options.d.name)
+                for (x in 1..options.e.count) attacks.add(options.e.name)
             }
 
             return attacks
@@ -60,11 +60,11 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
 
 
     private fun findActionByName(name:String): Action? {
-        if (monster.actions!=null) {
+        //if (monster.actions!=null) {
             for (action in monster.actions) {
                 if (action.name ==name) return action
             }
-        }
+        //}
         return null
     }
 

@@ -173,7 +173,9 @@ class MonsterDetailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
                     setSave(helper,monsterDetails, binding.strET.text.toString().toInt(),"STR")
-                }catch(e:Exception){} //do nothing if not a valid number
+                }catch(e:Exception){
+                    Log.w("MDF", "onTextChanged: ", e)
+                } //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -184,7 +186,9 @@ class MonsterDetailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
                     setSave(helper,monsterDetails, binding.dexET.text.toString().toInt(),"DEX")
-                }catch(e:Exception){} //do nothing if not a valid number
+                }catch(e:Exception){
+                    Log.w("MDF", "onTextChanged: ", e)
+                } //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -195,7 +199,9 @@ class MonsterDetailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
                     setSave(helper,monsterDetails, binding.conET.text.toString().toInt(),"CON")
-                }catch(e:Exception){} //do nothing if not a valid number
+                }catch(e:Exception){
+                    Log.w("MDF", "onTextChanged: ", e)
+                } //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -206,7 +212,9 @@ class MonsterDetailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
                     setSave(helper,monsterDetails, binding.intelET.text.toString().toInt(),"INT")
-                }catch(e:Exception){} //do nothing if not a valid number
+                }catch(e:Exception){
+                    Log.w("MDF", "onTextChanged: ", e)
+                } //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -217,7 +225,9 @@ class MonsterDetailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
                     setSave(helper,monsterDetails, binding.wisET.text.toString().toInt(),"WIS")
-                }catch(e:Exception){} //do nothing if not a valid number
+                }catch(e:Exception){
+                    Log.w("MDF", "onTextChanged: ", e)
+                } //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -228,7 +238,9 @@ class MonsterDetailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
                     setSave(helper,monsterDetails, binding.chaET.text.toString().toInt(),"CHA")
-                }catch(e:Exception){} //do nothing if not a valid number
+                }catch(e:Exception){
+                    Log.w("MDF", "onTextChanged: ", e)
+                } //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -236,9 +248,9 @@ class MonsterDetailFragment : Fragment() {
         //saves the changes to the monster to the database upon user clicking the save button
         binding.saveButton.setOnClickListener {
 
-            var attacks = MonsterDetailHelper(monsterDetails).getAttacksString()
+            val attacks = MonsterDetailHelper(monsterDetails).getAttacksString()
 
-            var changes = SavedMonsterChanges(
+            val changes = SavedMonsterChanges(
                 monsterDetails.index,
                 monsterDetails.armor_class,
                 monsterDetails.hit_points,
@@ -260,12 +272,12 @@ class MonsterDetailFragment : Fragment() {
     }
 
     private fun setSave(helper: MonsterDetailHelper, monster:MonsterDetails, value:Int, saveType:String){
-        val save = helper.getProficiencyObject("Saving Throw: "+saveType)
+        val save = helper.getProficiencyObject("Saving Throw: $saveType")
         if (save !=null){
             save.value=value
         }
         else {
-            monster.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: "+saveType, ""),value))
+            monster.proficiencies.add(Proficiency(ProficiencyDetails("", "Saving Throw: $saveType", ""),value))
         }
     }
 

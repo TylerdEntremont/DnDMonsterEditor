@@ -17,7 +17,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintVertical_bias="0"
-        android:textSize="25dp"
+        android:textSize="25sp"
         />
 
     <TextView
@@ -29,6 +29,7 @@
         app:layout_constraintBottom_toBottomOf="@id/ACET"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/HP"
+        android:labelFor="@+id/ACET"
         />
 
     <EditText
@@ -43,6 +44,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/AC"
         android:inputType="number"
+        android:autofillHints=""
         />
 
     <TextView
@@ -68,6 +70,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/HP"
         android:inputType="number"
+        android:autofillHints=""
         />
 
     <TextView
@@ -166,6 +169,7 @@
         app:layout_constraintRight_toLeftOf="@id/dex"
         app:layout_constraintLeft_toLeftOf="parent"
         android:inputType="numberSigned"
+        android:autofillHints=""
         />
 
     <EditText
@@ -179,6 +183,7 @@
         app:layout_constraintRight_toLeftOf="@id/con"
         app:layout_constraintLeft_toRightOf="@id/str"
         android:inputType="numberSigned"
+        android:autofillHints=""
         />
 
     <EditText
@@ -192,6 +197,7 @@
         app:layout_constraintRight_toLeftOf="@id/intel"
         app:layout_constraintLeft_toRightOf="@id/dex"
         android:inputType="numberSigned"
+        android:autofillHints=""
         />
 
     <EditText
@@ -205,6 +211,7 @@
         app:layout_constraintRight_toLeftOf="@id/wis"
         app:layout_constraintLeft_toRightOf="@id/con"
         android:inputType="numberSigned"
+        android:autofillHints=""
         />
 
     <EditText
@@ -218,6 +225,7 @@
         app:layout_constraintRight_toLeftOf="@id/cha"
         app:layout_constraintLeft_toRightOf="@id/intel"
         android:inputType="numberSigned"
+        android:autofillHints=""
         />
 
     <EditText
@@ -231,6 +239,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/wis"
         android:inputType="numberSigned"
+        android:autofillHints=""
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -347,7 +356,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/CRET"
         app:layout_constraintRight_toLeftOf="@id/midGuideLine1"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="30dp"
+        android:textSize="30sp"
         />
 
     <EditText
@@ -362,7 +371,8 @@
         app:layout_constraintRight_toLeftOf="@id/saveButton"
         app:layout_constraintLeft_toRightOf="@id/midGuideLine1"
         android:inputType="number"
-        android:textSize="30dp"
+        android:textSize="30sp"
+        android:autofillHints=""
         />
 
     <Button
@@ -402,6 +412,8 @@
         app:layout_constraintBottom_toTopOf="@+id/CRET"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:inputType="text"
+        android:autofillHints=""
         />
 
 

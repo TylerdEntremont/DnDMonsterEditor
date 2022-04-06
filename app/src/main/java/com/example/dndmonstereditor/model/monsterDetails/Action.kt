@@ -1,8 +1,5 @@
 package com.example.dndmonstereditor.model.monsterDetails
 
-import android.os.Parcelable
-import androidx.room.Embedded
-import kotlinx.parcelize.Parcelize
 
 
 data class Action(
