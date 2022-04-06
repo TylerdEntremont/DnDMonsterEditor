@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dndmonstereditor.databinding.LegendaryActionListItemBinding
 import com.example.dndmonstereditor.model.monsterDetails.LegendaryAction
 
+//adapter for the legendary actions in the legendary actions recycle viewer of the details fragment
 class LActionItemAdapter (
     private val actions: List<LegendaryAction>?
 ): RecyclerView.Adapter<LActionHolder>(){

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dndmonstereditor.databinding.SpecialAbilityListItemBinding
 import com.example.dndmonstereditor.model.monsterDetails.SpecialAbility
 
+//adapter class for the special abilities recycle viewer in the details fragement
 class AbilityItemAdapter (
     private val abilityList: List<SpecialAbility>?
     ):RecyclerView.Adapter<AbilityHolder>(){

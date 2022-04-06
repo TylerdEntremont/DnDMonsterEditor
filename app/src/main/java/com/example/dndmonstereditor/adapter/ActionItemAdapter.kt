@@ -1,4 +1,4 @@
-package com.example.dndmonstereditor. adapter
+package com.example.dndmonstereditor.adapter
 
 
 import android.text.Editable
@@ -13,7 +13,8 @@ import com.example.dndmonstereditor.model.monsterDetails.Action
 import com.example.dndmonstereditor.modelhelpers.ActionHelper
 
 
-
+//adapter class for the actions recycle viewer in the details fragment
+//holds attacks and standard actions
 class ActionItemAdapter (
     private val actionList: List<Action>?
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -30,6 +31,7 @@ class ActionItemAdapter (
         return if (helper.isAttack()) Const.ATTACK else Const.ACTION
     }
 
+    //creates a viewholder either a standard action or an attack one as needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):RecyclerView.ViewHolder {
 
         if (viewType==Const.ACTION) {
@@ -56,6 +58,7 @@ class ActionItemAdapter (
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val helper = ActionHelper(actionList?.get(position))
 
+        //binds either standard action or attack
         if (helper.isAttack()) (holder as AttackHolder).bind(actionList?.get(position))
         else (holder as ActionHolder).bind(actionList?.get(position))
     }
@@ -63,6 +66,7 @@ class ActionItemAdapter (
     override fun getItemCount(): Int = actionList?.size?:0
 }
 
+//viewholder for standard actions in the recycle viewer
 class ActionHolder(private val binding: ActionListItemBinding): RecyclerView.ViewHolder(binding.root){
 
     fun bind (ability: Action?){
@@ -72,7 +76,9 @@ class ActionHolder(private val binding: ActionListItemBinding): RecyclerView.Vie
     }
 }
 
- class AttackHolder (private val binding: AttackListItemBinding): RecyclerView.ViewHolder(binding.root){
+
+//viewholder for attack actions in the recycle viewer
+class AttackHolder (private val binding: AttackListItemBinding): RecyclerView.ViewHolder(binding.root){
 
      fun bind (attack: Action?){
          val helper = ActionHelper(attack)

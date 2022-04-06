@@ -1,5 +1,6 @@
 package com.example.dndmonstereditor.fragments
 
+
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -28,7 +29,7 @@ import com.example.dndmonstereditor.viewmodel.States
 import dagger.hilt.android.AndroidEntryPoint
 
 
-
+//fragment with all the monsters details which can be edited to create a new CR
 @AndroidEntryPoint
 class MonsterDetailFragment : Fragment() {
 
@@ -43,7 +44,7 @@ class MonsterDetailFragment : Fragment() {
 
     private lateinit var abilityItemAdapter:AbilityItemAdapter
     private lateinit var lActionItemAdapter:LActionItemAdapter
-    private lateinit var actionItemAdapter:ActionItemAdapter
+    private lateinit var actionItemAdapter: ActionItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +60,7 @@ class MonsterDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-
+        //listens for change in information returned from api calls
         monsterViewModel.monstersLiveData.observe(viewLifecycleOwner) { state ->
             when(state) {
                 is States.LOADING -> {
@@ -68,6 +69,7 @@ class MonsterDetailFragment : Fragment() {
                 is States.SUCCESSDET -> {
                     val monster = state.response
 
+                    //if this is a modified monster changes the data from the api to match the changes
                     if (changes!=null){
                         val helper = MonsterDetailHelper(monster)
                         helper.putAttacksString(changes!!.monster.attacks)
@@ -160,6 +162,8 @@ class MonsterDetailFragment : Fragment() {
 
     private fun bind(monsterDetails: MonsterDetails){
 
+
+        //binds the displayed informtation
         val helper=MonsterDetailHelper(monsterDetails)
         binding.name.text=monsterDetails.name
         binding.ACET.setText(monsterDetails.armor_class.toString())
@@ -173,6 +177,8 @@ class MonsterDetailFragment : Fragment() {
         binding.intelET.setText((helper.getProficiency("Saving Throw: INT")?:((monsterDetails.intelligence-10)/2)).toString())
         binding.wisET.setText((helper.getProficiency("Saving Throw: WIS")?:((monsterDetails.wisdom-10)/2)).toString())
         binding.chaET.setText((helper.getProficiency("Saving Throw: CHA")?:((monsterDetails.charisma-10)/2)).toString())
+
+        //sets on click and on text change listener
 
         binding.update.setOnClickListener {
             binding.CRET.setText(CRCalculator(monsterDetails).getCR().toString().take(4))
@@ -303,6 +309,7 @@ class MonsterDetailFragment : Fragment() {
             override fun afterTextChanged(p0: Editable?) {}
         })
 
+        //saves the changes to the monster to the database upon user clicking the save button
         binding.saveButton.setOnClickListener {
 
             var attacks = MonsterDetailHelper(monsterDetails).getAttacksString()

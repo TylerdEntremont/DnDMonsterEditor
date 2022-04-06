@@ -19,9 +19,8 @@ import com.example.dndmonstereditor.viewmodel.MonsterViewModel
 import com.example.dndmonstereditor.viewmodel.States
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
+
+//displays full list of monsters collected from the SRD
 @AndroidEntryPoint
 class MonsterListFragment : Fragment(), OnMonsterClickListener {
 

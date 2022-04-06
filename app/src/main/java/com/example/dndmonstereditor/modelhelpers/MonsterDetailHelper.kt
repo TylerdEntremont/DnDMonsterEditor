@@ -4,6 +4,7 @@ import com.example.dndmonstereditor.model.monsterDetails.Action
 import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
 import com.example.dndmonstereditor.model.monsterDetails.Proficiency
 
+//helper class for actions performed on the full set of monster details
 class MonsterDetailHelper (val monster: MonsterDetails) {
 
     fun findMultiAttack():Action?{
@@ -22,6 +23,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         return maxToHit
     }
 
+    //returns a list of all the attacks performed in the multiattack action
     fun parseMultiAttack(multiAttack: Action?):List<String>{
 
         if (multiAttack!=null) {
@@ -46,6 +48,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
 
     }
 
+    //using the list of attacks from a multiattack calculates average damage per turn
     fun damagePerTurn(attacks:List<String>): Int{
         var damage=0
         for (attack in attacks){
@@ -65,6 +68,8 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         return null
     }
 
+    //gets the string which represents all the attacks for this monster
+    //which is in a form which can be stored to the database
     fun getAttacksString():String{
          var attacks=""
 
@@ -77,6 +82,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         return attacks
     }
 
+    //takes the attack string and resets all the attacks to match that information
     fun putAttacksString(attacks:String){
         val split1 = attacks.split(":")
         var i =0
@@ -92,6 +98,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
 
     }
 
+    //get the value of a proficiency from the monster by the proficiencies name
     fun getProficiency(prof:String):Int?{
         for (item in monster.proficiencies){
             if (item.proficiency?.name == prof){
@@ -101,6 +108,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         return null
     }
 
+    //get the whole object representing the proficiency from the monster by the proficiencies name
     fun getProficiencyObject(prof:String):Proficiency?{
         for (item in monster.proficiencies){
             if (item.proficiency?.name == prof){

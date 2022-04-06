@@ -7,6 +7,7 @@ import java.util.Collections.max
 
 class CRCalculator(private val monster:MonsterDetails) {
 
+    //calculates the CR of the monster given the currently set stats
     fun getCR (): Double {
         val helper = MonsterDetailHelper(monster)
         val damage = helper.parseMultiAttack(helper.findMultiAttack()).let { helper.damagePerTurn(it) }

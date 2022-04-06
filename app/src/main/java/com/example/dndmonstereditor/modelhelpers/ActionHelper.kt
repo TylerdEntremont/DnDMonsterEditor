@@ -2,6 +2,7 @@ package com.example.dndmonstereditor.modelhelpers
 
 import com.example.dndmonstereditor.model.monsterDetails.Action
 
+//helper functions for use with action objects
 class ActionHelper (private val action: Action?) {
 
     fun isAttack():Boolean{

@@ -1,5 +1,6 @@
 package com.example.dndmonstereditor.modelhelpers
 
+//singleton class to perform repeated mathematical operations
 object CalculationHelper {
 
     fun getAverageDamage(dice:Dice):Int{

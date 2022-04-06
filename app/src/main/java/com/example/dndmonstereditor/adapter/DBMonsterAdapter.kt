@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dndmonstereditor.databinding.MonsterListItemBinding
 import com.example.dndmonstereditor.roomdb.MonsterDBItem
 
+//adapter class for the list of saved monsters int the DBList
 class DBMonsterAdapter(
     private val monsterClickListener: OnChangedMonsterClickListener,
     private var monsterList:MutableList<MonsterDBItem> = mutableListOf()

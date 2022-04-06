@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dndmonstereditor.databinding.MonsterListItemBinding
 import com.example.dndmonstereditor.model.MonsterFromList
 
+//adapter for the list of all monsters for the Monster List Fragment
 class MonsterListItemAdapter(
     private val monsterClickListener: OnMonsterClickListener,
     private var monsterList:MutableList<MonsterFromList> = mutableListOf()

@@ -31,10 +31,12 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //button to open the full list from the SRD
         binding.buttonFL.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_MonsterListFragment)
         }
 
+        //button to open the saved monsters information
         binding.buttonSI.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_DBList)
         }

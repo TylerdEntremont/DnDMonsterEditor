@@ -20,7 +20,7 @@ import com.example.dndmonstereditor.viewmodel.MonsterViewModel
 import com.example.dndmonstereditor.viewmodel.States
 import dagger.hilt.android.AndroidEntryPoint
 
-
+//displays the list of saved modified monsters from the database
 @AndroidEntryPoint
 class DBList : Fragment(), OnChangedMonsterClickListener {
 
@@ -54,6 +54,7 @@ class DBList : Fragment(), OnChangedMonsterClickListener {
             adapter = monsterAdapter
         }
 
+        //monitors for changes in information returned from the database
         monsterViewModel.monstersLiveData.observe(viewLifecycleOwner) { state ->
             when(state) {
                 is States.LOADING -> {}
