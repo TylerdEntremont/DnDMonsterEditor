@@ -67,4 +67,8 @@ class MonsterViewModel @Inject constructor (
         }
     }
 
+    fun delete(name:String){
+        monsterDB.monsterDAO().delete(name)
+    }
+
 }

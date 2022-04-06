@@ -1,6 +1,8 @@
 package com.example.dndmonstereditor.fragments
 
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -71,6 +73,7 @@ class MonsterDetailFragment : Fragment() {
 
                     //if this is a modified monster changes the data from the api to match the changes
                     if (changes!=null){
+                        setDelete()
                         val helper = MonsterDetailHelper(monster)
                         helper.putAttacksString(changes!!.monster.attacks)
                         monster.armor_class= changes!!.monster.ac
@@ -78,12 +81,12 @@ class MonsterDetailFragment : Fragment() {
                         monster.challenge_rating = changes!!.monster.cr.toFloat()
                         binding.saveName.setText(changes!!.uniqueName)
 
-                        setSave(helper,monster, changes!!.monster.str,"STR")
-                        setSave(helper,monster, changes!!.monster.dex,"DEX")
-                        setSave(helper,monster, changes!!.monster.con,"CON")
-                        setSave(helper,monster, changes!!.monster.intel,"INT")
-                        setSave(helper,monster, changes!!.monster.wis,"WIS")
-                        setSave(helper,monster, changes!!.monster.cha,"CHA")
+                        setSaves(helper,monster, changes!!.monster.str,"STR")
+                        setSaves(helper,monster, changes!!.monster.dex,"DEX")
+                        setSaves(helper,monster, changes!!.monster.con,"CON")
+                        setSaves(helper,monster, changes!!.monster.intel,"INT")
+                        setSaves(helper,monster, changes!!.monster.wis,"WIS")
+                        setSaves(helper,monster, changes!!.monster.cha,"CHA")
 
                         Log.d("MDF", "onCreateView: "+monster.proficiencies.toString())
                     }
@@ -121,7 +124,6 @@ class MonsterDetailFragment : Fragment() {
     }
 
     private fun bind(monsterDetails: MonsterDetails){
-
 
         //binds the displayed information
         val helper=MonsterDetailHelper(monsterDetails)
@@ -172,7 +174,7 @@ class MonsterDetailFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
-                    setSave(helper,monsterDetails, binding.strET.text.toString().toInt(),"STR")
+                    setSaves(helper,monsterDetails, binding.strET.text.toString().toInt(),"STR")
                 }catch(e:Exception){
                     Log.w("MDF", "onTextChanged: ", e)
                 } //do nothing if not a valid number
@@ -185,7 +187,7 @@ class MonsterDetailFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
-                    setSave(helper,monsterDetails, binding.dexET.text.toString().toInt(),"DEX")
+                    setSaves(helper,monsterDetails, binding.dexET.text.toString().toInt(),"DEX")
                 }catch(e:Exception){
                     Log.w("MDF", "onTextChanged: ", e)
                 } //do nothing if not a valid number
@@ -198,7 +200,7 @@ class MonsterDetailFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
-                    setSave(helper,monsterDetails, binding.conET.text.toString().toInt(),"CON")
+                    setSaves(helper,monsterDetails, binding.conET.text.toString().toInt(),"CON")
                 }catch(e:Exception){
                     Log.w("MDF", "onTextChanged: ", e)
                 } //do nothing if not a valid number
@@ -211,7 +213,7 @@ class MonsterDetailFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
-                    setSave(helper,monsterDetails, binding.intelET.text.toString().toInt(),"INT")
+                    setSaves(helper,monsterDetails, binding.intelET.text.toString().toInt(),"INT")
                 }catch(e:Exception){
                     Log.w("MDF", "onTextChanged: ", e)
                 } //do nothing if not a valid number
@@ -224,7 +226,7 @@ class MonsterDetailFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
-                    setSave(helper,monsterDetails, binding.wisET.text.toString().toInt(),"WIS")
+                    setSaves(helper,monsterDetails, binding.wisET.text.toString().toInt(),"WIS")
                 }catch(e:Exception){
                     Log.w("MDF", "onTextChanged: ", e)
                 } //do nothing if not a valid number
@@ -237,7 +239,7 @@ class MonsterDetailFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
-                    setSave(helper,monsterDetails, binding.chaET.text.toString().toInt(),"CHA")
+                    setSaves(helper,monsterDetails, binding.chaET.text.toString().toInt(),"CHA")
                 }catch(e:Exception){
                     Log.w("MDF", "onTextChanged: ", e)
                 } //do nothing if not a valid number
@@ -271,13 +273,26 @@ class MonsterDetailFragment : Fragment() {
         }
     }
 
-    private fun setSave(helper: MonsterDetailHelper, monster:MonsterDetails, value:Int, saveType:String){
+    private fun setSaves(helper: MonsterDetailHelper, monster:MonsterDetails, value:Int, saveType:String){
         val save = helper.getProficiencyObject("Saving Throw: $saveType")
         if (save !=null){
             save.value=value
         }
         else {
             monster.proficiencies.add(Proficiency(ProficiencyDetails("", "Saving Throw: $saveType", ""),value))
+        }
+    }
+
+    private fun setDelete(){
+        binding.deleteButton.visibility=View.VISIBLE
+        binding.deleteButton.setOnClickListener {
+            AlertDialog.Builder(requireContext()).setMessage("Do you want to Delete?")
+                .setPositiveButton("Yes"){ _, _ ->
+                    monsterViewModel.delete(changes!!.uniqueName)
+                    parentFragmentManager.popBackStackImmediate()
+                }
+                .setNegativeButton("No"){_,_-> }
+                .show()
         }
     }
 
