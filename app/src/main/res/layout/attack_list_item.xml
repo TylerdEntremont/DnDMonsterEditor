@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/toHitTV"
-            android:inputType="number"
+            android:inputType="numberSigned"
             />
 
 
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:text="@string/placeholderNum"
             app:layout_constraintHorizontal_bias="1"
-            android:inputType="number"
+            android:inputType="numberSigned"
             app:layout_constraintTop_toBottomOf="@id/attackName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

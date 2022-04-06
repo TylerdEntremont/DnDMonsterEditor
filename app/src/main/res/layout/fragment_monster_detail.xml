@@ -165,7 +165,7 @@
         app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
         app:layout_constraintRight_toLeftOf="@id/dex"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:inputType="number"
+        android:inputType="numberSigned"
         />
 
     <EditText
@@ -178,7 +178,7 @@
         app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
         app:layout_constraintRight_toLeftOf="@id/con"
         app:layout_constraintLeft_toRightOf="@id/str"
-        android:inputType="number"
+        android:inputType="numberSigned"
         />
 
     <EditText
@@ -191,7 +191,7 @@
         app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
         app:layout_constraintRight_toLeftOf="@id/intel"
         app:layout_constraintLeft_toRightOf="@id/dex"
-        android:inputType="number"
+        android:inputType="numberSigned"
         />
 
     <EditText
@@ -204,7 +204,7 @@
         app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
         app:layout_constraintRight_toLeftOf="@id/wis"
         app:layout_constraintLeft_toRightOf="@id/con"
-        android:inputType="number"
+        android:inputType="numberSigned"
         />
 
     <EditText
@@ -217,7 +217,7 @@
         app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
         app:layout_constraintRight_toLeftOf="@id/cha"
         app:layout_constraintLeft_toRightOf="@id/intel"
-        android:inputType="number"
+        android:inputType="numberSigned"
         />
 
     <EditText
@@ -230,7 +230,7 @@
         app:layout_constraintBottom_toBottomOf="@id/upperGuideLine"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/wis"
-        android:inputType="number"
+        android:inputType="numberSigned"
         />
 
     <androidx.constraintlayout.widget.Guideline

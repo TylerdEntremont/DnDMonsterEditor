@@ -78,54 +78,14 @@ class MonsterDetailFragment : Fragment() {
                         monster.challenge_rating = changes!!.monster.cr.toFloat()
                         binding.saveName.setText(changes!!.uniqueName)
 
-                        var save = helper.getProficiencyObject("Saving Throw: STR")
-                        if (save !=null){
-                            save.value=changes!!.monster.str
-                        }
-                        else {
-                            monster.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: STR", ""),changes!!.monster.str))
-                        }
+                        setSave(helper,monster, changes!!.monster.str,"STR")
+                        setSave(helper,monster, changes!!.monster.dex,"DEX")
+                        setSave(helper,monster, changes!!.monster.con,"CON")
+                        setSave(helper,monster, changes!!.monster.intel,"INT")
+                        setSave(helper,monster, changes!!.monster.wis,"WIS")
+                        setSave(helper,monster, changes!!.monster.cha,"CHA")
 
-                        save = helper.getProficiencyObject("Saving Throw: DEX")
-                        if (save !=null){
-                            save.value=changes!!.monster.dex
-                        }
-                        else {
-                            monster.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: DEX", ""),changes!!.monster.dex))
-                        }
-
-                        save = helper.getProficiencyObject("Saving Throw: CON")
-                        if (save !=null){
-                            save.value=changes!!.monster.con
-                        }
-                        else {
-                            monster.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: CON", ""),changes!!.monster.con))
-                        }
-
-                        save = helper.getProficiencyObject("Saving Throw: INT")
-                        if (save !=null){
-                            save.value=changes!!.monster.intel
-                        }
-                        else {
-                            monster.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: INT", ""),changes!!.monster.intel))
-                        }
-
-                        save = helper.getProficiencyObject("Saving Throw: WIS")
-                        if (save !=null){
-                            save.value=changes!!.monster.wis
-                        }
-                        else {
-                            monster.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: WIS", ""),changes!!.monster.wis))
-                        }
-
-                        save = helper.getProficiencyObject("Saving Throw: CHA")
-                        if (save !=null){
-                            save.value=changes!!.monster.cha
-                        }
-                        else {
-                            monster.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: CHA", ""),changes!!.monster.cha))
-                        }
-
+                        Log.d("MDF", "onCreateView: "+monster.proficiencies.toString())
                     }
 
                     bind(monster)
@@ -163,7 +123,7 @@ class MonsterDetailFragment : Fragment() {
     private fun bind(monsterDetails: MonsterDetails){
 
 
-        //binds the displayed informtation
+        //binds the displayed information
         val helper=MonsterDetailHelper(monsterDetails)
         binding.name.text=monsterDetails.name
         binding.ACET.setText(monsterDetails.armor_class.toString())
@@ -211,15 +171,9 @@ class MonsterDetailFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.strET.text.toString()!=""){
-                    var save = helper.getProficiencyObject("Saving Throw: STR")
-                    if (save !=null){
-                            save.value=binding.strET.text.toString().toInt()
-                    }
-                    else {
-                        monsterDetails.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: STR", ""),binding.strET.text.toString().toInt()))
-                    }
-                }
+                try{
+                    setSave(helper,monsterDetails, binding.strET.text.toString().toInt(),"STR")
+                }catch(e:Exception){} //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -228,15 +182,9 @@ class MonsterDetailFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.dexET.text.toString()!=""){
-                    var save = helper.getProficiencyObject("Saving Throw: DEX")
-                    if (save !=null){
-                        save.value=binding.dexET.text.toString().toInt()
-                    }
-                    else {
-                        monsterDetails.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: DEX", ""),binding.dexET.text.toString().toInt()))
-                    }
-                }
+                try{
+                    setSave(helper,monsterDetails, binding.dexET.text.toString().toInt(),"DEX")
+                }catch(e:Exception){} //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -245,15 +193,9 @@ class MonsterDetailFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.conET.text.toString()!=""){
-                    var save = helper.getProficiencyObject("Saving Throw: CON")
-                    if (save !=null){
-                        save.value=binding.conET.text.toString().toInt()
-                    }
-                    else {
-                        monsterDetails.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: CON", ""),binding.conET.text.toString().toInt()))
-                    }
-                }
+                try{
+                    setSave(helper,monsterDetails, binding.conET.text.toString().toInt(),"CON")
+                }catch(e:Exception){} //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -262,15 +204,9 @@ class MonsterDetailFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.intelET.text.toString()!=""){
-                    var save = helper.getProficiencyObject("Saving Throw: INT")
-                    if (save !=null){
-                        save.value=binding.intelET.text.toString().toInt()
-                    }
-                    else {
-                        monsterDetails.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: INT", ""),binding.intelET.text.toString().toInt()))
-                    }
-                }
+                try{
+                    setSave(helper,monsterDetails, binding.intelET.text.toString().toInt(),"INT")
+                }catch(e:Exception){} //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -279,15 +215,9 @@ class MonsterDetailFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.wisET.text.toString()!=""){
-                    var save = helper.getProficiencyObject("Saving Throw: WIS")
-                    if (save !=null){
-                        save.value=binding.wisET.text.toString().toInt()
-                    }
-                    else {
-                        monsterDetails.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: WIS", ""),binding.wisET.text.toString().toInt()))
-                    }
-                }
+                try{
+                    setSave(helper,monsterDetails, binding.wisET.text.toString().toInt(),"WIS")
+                }catch(e:Exception){} //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -296,15 +226,9 @@ class MonsterDetailFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.chaET.text.toString()!=""){
-                    var save = helper.getProficiencyObject("Saving Throw: CHA")
-                    if (save !=null){
-                        save.value=binding.chaET.text.toString().toInt()
-                    }
-                    else {
-                        monsterDetails.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: CHA", ""),binding.chaET.text.toString().toInt()))
-                    }
-                }
+                try{
+                    setSave(helper,monsterDetails, binding.chaET.text.toString().toInt(),"CHA")
+                }catch(e:Exception){} //do nothing if not a valid number
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -320,18 +244,28 @@ class MonsterDetailFragment : Fragment() {
                 monsterDetails.hit_points,
                 attacks,
                 binding.CRET.text.toString(),
-                binding.strET.text.toString().toInt(),
-                binding.dexET.text.toString().toInt(),
-                binding.conET.text.toString().toInt(),
-                binding.intelET.text.toString().toInt(),
-                binding.wisET.text.toString().toInt(),
-                binding.chaET.text.toString().toInt(),
+                helper.getProficiency("Saving Throw: STR")?:((monsterDetails.strength-10)/2),
+            helper.getProficiency("Saving Throw: DEX")?:((monsterDetails.dexterity-10)/2),
+            helper.getProficiency("Saving Throw: CON")?:((monsterDetails.constitution-10)/2),
+            helper.getProficiency("Saving Throw: INT")?:((monsterDetails.intelligence-10)/2),
+            helper.getProficiency("Saving Throw: WIS")?:((monsterDetails.wisdom-10)/2),
+            helper.getProficiency("Saving Throw: CHA")?:((monsterDetails.charisma-10)/2)
             )
 
             monsterViewModel.saveToDataBase(MonsterDBItem(binding.saveName.text.toString(),changes))
 
-            Toast.makeText(context,"Saved as "+binding.saveButton.text.toString(),Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"Saved as "+binding.saveName.text.toString(),Toast.LENGTH_LONG).show()
 
+        }
+    }
+
+    private fun setSave(helper: MonsterDetailHelper, monster:MonsterDetails, value:Int, saveType:String){
+        val save = helper.getProficiencyObject("Saving Throw: "+saveType)
+        if (save !=null){
+            save.value=value
+        }
+        else {
+            monster.proficiencies.add(Proficiency(ProficiencyDetails("","Saving Throw: "+saveType, ""),value))
         }
     }
 

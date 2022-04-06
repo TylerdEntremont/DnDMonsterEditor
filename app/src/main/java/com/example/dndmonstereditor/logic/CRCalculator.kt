@@ -24,7 +24,7 @@ class CRCalculator(private val monster:MonsterDetails) {
 
 
         val acCR = when (ac) {
-            in 0..12 -> 0.125
+            in 0..12 -> 0.0
             13-> 0.5
             else-> (ac - 13) * 3.0
         }
