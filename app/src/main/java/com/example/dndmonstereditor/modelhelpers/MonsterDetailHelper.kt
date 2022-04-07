@@ -28,7 +28,8 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
     fun parseMultiAttack(multiAttack: Action?):List<String>{
 
         if (multiAttack!=null) {
-            val attacks = mutableListOf<String>()
+            var attacks = mutableListOf<String>()
+            var maxAttacks = mutableListOf<String>()
 
             for (options in multiAttack.options.from!!) {
                 for (x in 1..options.a.count) attacks.add(options.a.name)
@@ -36,9 +37,16 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
                 for (x in 1..options.c.count) attacks.add(options.c.name)
                 for (x in 1..options.d.count) attacks.add(options.d.name)
                 for (x in 1..options.e.count) attacks.add(options.e.name)
+
+                if (maxAttacks!=null){
+                    if (damagePerTurn(attacks)>damagePerTurn((maxAttacks)))maxAttacks=attacks
+                }
+                else maxAttacks=attacks
+
+                attacks= mutableListOf()
             }
 
-            return attacks
+            return maxAttacks
         }
             for (action in monster.actions){
                 if (action.attack_bonus!=null){
@@ -66,6 +74,7 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
             }
         return null
     }
+
 
     fun findAbilityByPartialName(name:String): SpecialAbility?{
         for (ability in monster.special_abilities){
