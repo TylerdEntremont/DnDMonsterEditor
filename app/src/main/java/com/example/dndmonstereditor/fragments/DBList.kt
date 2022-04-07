@@ -57,8 +57,13 @@ class DBList : Fragment(), OnChangedMonsterClickListener {
         //monitors for changes in information returned from the database
         monsterViewModel.monstersLiveData.observe(viewLifecycleOwner) { state ->
             when(state) {
-                is States.LOADING -> {}
+                is States.LOADING -> {
+                    binding.MonsterList.visibility=View.GONE
+                    binding.loadingImage.visibility=View.VISIBLE
+                }
                 is States.SUCCESSNAME -> {
+                    binding.MonsterList.visibility=View.VISIBLE
+                    binding.loadingImage.visibility=View.GONE
                     val monsters = state.response
                     monsterAdapter.addToMonsterList(monsters)
                 }

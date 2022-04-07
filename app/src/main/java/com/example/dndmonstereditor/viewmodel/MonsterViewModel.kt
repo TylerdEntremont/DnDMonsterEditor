@@ -29,8 +29,6 @@ class MonsterViewModel @Inject constructor (
 
     fun getMonsterList(){
         _monstersLiveData.postValue(States.LOADING)
-
-
         viewModelScope.launch(coroutineDispatcher) {
             monsterRepository.getMonsterList()
                 .catch{ _monstersLiveData.postValue(States.ERROR(it))}

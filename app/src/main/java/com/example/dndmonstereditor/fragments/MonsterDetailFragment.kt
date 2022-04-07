@@ -2,7 +2,6 @@ package com.example.dndmonstereditor.fragments
 
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dndmonstereditor.R
 import com.example.dndmonstereditor.adapter.AbilityItemAdapter
 import com.example.dndmonstereditor.adapter.ActionItemAdapter
 import com.example.dndmonstereditor.adapter.LActionItemAdapter
@@ -66,9 +66,12 @@ class MonsterDetailFragment : Fragment() {
         monsterViewModel.monstersLiveData.observe(viewLifecycleOwner) { state ->
             when(state) {
                 is States.LOADING -> {
-                    //Toast.makeText(requireContext(), "loading...", Toast.LENGTH_LONG).show()
+                    binding.loadingImage.visibility=View.VISIBLE
+                    binding.loadingBackground.visibility=View.VISIBLE
                 }
                 is States.SUCCESSDET -> {
+                    binding.loadingImage.visibility=View.GONE
+                    binding.loadingBackground.visibility=View.GONE
                     val monster = state.response
 
                     //if this is a modified monster changes the data from the api to match the changes
@@ -286,12 +289,12 @@ class MonsterDetailFragment : Fragment() {
     private fun setDelete(){
         binding.deleteButton.visibility=View.VISIBLE
         binding.deleteButton.setOnClickListener {
-            AlertDialog.Builder(requireContext()).setMessage("Do you want to Delete?")
-                .setPositiveButton("Yes"){ _, _ ->
+            AlertDialog.Builder(requireContext()).setMessage(getText(R.string.deleteQuestion).toString()+changes!!.uniqueName)
+                .setPositiveButton(R.string.yes){ _, _ ->
                     monsterViewModel.delete(changes!!.uniqueName)
                     parentFragmentManager.popBackStackImmediate()
                 }
-                .setNegativeButton("No"){_,_-> }
+                .setNegativeButton(R.string.no){_,_-> }
                 .show()
         }
     }
