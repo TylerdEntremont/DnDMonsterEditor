@@ -3,6 +3,7 @@ package com.example.dndmonstereditor.modelhelpers
 import com.example.dndmonstereditor.model.monsterDetails.Action
 import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
 import com.example.dndmonstereditor.model.monsterDetails.Proficiency
+import com.example.dndmonstereditor.model.monsterDetails.SpecialAbility
 
 //helper class for actions performed on the full set of monster details
 class MonsterDetailHelper (val monster: MonsterDetails) {
@@ -60,11 +61,16 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
 
 
     private fun findActionByName(name:String): Action? {
-        //if (monster.actions!=null) {
             for (action in monster.actions) {
                 if (action.name ==name) return action
             }
-        //}
+        return null
+    }
+
+    fun findAbilityByPartialName(name:String): SpecialAbility?{
+        for (ability in monster.special_abilities){
+            if (ability.name?.contains(name,true)==true) return ability
+        }
         return null
     }
 

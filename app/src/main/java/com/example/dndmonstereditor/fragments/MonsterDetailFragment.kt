@@ -111,6 +111,8 @@ class MonsterDetailFragment : Fragment() {
                         adapter=actionItemAdapter
                     }
 
+
+
                 }
                 is States.ERROR -> {
                     Toast.makeText(requireContext(), state.error.localizedMessage, Toast.LENGTH_LONG).show()
@@ -142,6 +144,12 @@ class MonsterDetailFragment : Fragment() {
         binding.intelET.setText((helper.getProficiency("Saving Throw: INT")?:((monsterDetails.intelligence-10)/2)).toString())
         binding.wisET.setText((helper.getProficiency("Saving Throw: WIS")?:((monsterDetails.wisdom-10)/2)).toString())
         binding.chaET.setText((helper.getProficiency("Saving Throw: CHA")?:((monsterDetails.charisma-10)/2)).toString())
+
+        //notifies user if the monster is a spellcaster since that has not been completed in the logic
+
+        if (helper.findAbilityByPartialName("Spellcasting")!=null){
+            AlertDialog.Builder(requireContext()).setMessage(R.string.isSpellCaster).show()
+        }
 
         //sets on click and on text change listener
 
