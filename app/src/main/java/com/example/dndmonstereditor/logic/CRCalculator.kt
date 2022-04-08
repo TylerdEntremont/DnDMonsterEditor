@@ -1,6 +1,7 @@
 package com.example.dndmonstereditor.logic
 
 
+import android.util.Log
 import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
 import com.example.dndmonstereditor.modelhelpers.MonsterDetailHelper
 import java.util.Collections.max
@@ -10,7 +11,7 @@ class CRCalculator(private val monster:MonsterDetails) {
     //calculates the CR of the monster given the currently set stats
     fun getCR (): Double {
         val helper = MonsterDetailHelper(monster)
-        val damage = helper.parseMultiAttack(helper.findMultiAttack()).let { helper.damagePerTurn(it) }
+        val damage = helper.parseMultiAttack(helper.findMultiAttack())
         val ac= monster.armor_class
         val hp= monster.hit_points
         val toHit= helper.maxToHit()

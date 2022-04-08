@@ -25,11 +25,12 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
     }
 
     //returns a list of all the attacks performed in the multiattack action
-    fun parseMultiAttack(multiAttack: Action?):List<String>{
+    fun parseMultiAttack(multiAttack: Action?):Int{
+        var maxAttacks =0
 
         if (multiAttack!=null) {
             var attacks = mutableListOf<String>()
-            var maxAttacks = mutableListOf<String>()
+
 
             for (options in multiAttack.options.from!!) {
                 for (x in 1..options.a.count) attacks.add(options.a.name)
@@ -38,11 +39,9 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
                 for (x in 1..options.d.count) attacks.add(options.d.name)
                 for (x in 1..options.e.count) attacks.add(options.e.name)
 
-                if (maxAttacks!=null){
-                    if (damagePerTurn(attacks)>damagePerTurn((maxAttacks)))maxAttacks=attacks
-                }
-                else maxAttacks=attacks
+                val currentDamage=damagePerTurn(attacks)
 
+                if (currentDamage>maxAttacks)maxAttacks=currentDamage
                 attacks= mutableListOf()
             }
 
@@ -50,15 +49,17 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         }
             for (action in monster.actions){
                 if (action.attack_bonus!=null){
-                    return listOf(action.name)
+                    val currentDamage = damagePerTurn(listOf(action.name))
+                    if (currentDamage>maxAttacks)maxAttacks=currentDamage
                 }
+                return maxAttacks
             }
-        return listOf()
+        return 0
 
     }
 
     //using the list of attacks from a multiattack calculates average damage per turn
-    fun damagePerTurn(attacks:List<String>): Int{
+    private fun damagePerTurn(attacks:List<String>): Int{
         var damage=0
         for (attack in attacks){
            damage+= CalculationHelper.getAverageDamage(ActionHelper(findActionByName(attack)).getDice())
