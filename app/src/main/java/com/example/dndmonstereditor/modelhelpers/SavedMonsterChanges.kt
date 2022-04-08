@@ -15,5 +15,6 @@ data class SavedMonsterChanges(
     val con:Int,
     val intel:Int,
     val wis:Int,
-    val cha:Int
+    val cha:Int,
+    val additionals:String
 ):Parcelable

@@ -38,4 +38,5 @@
     <string name="no">no</string>
     <string name="a_d20">a D20</string>
     <string name="isSpellCaster">This monster is a spell caster, calculated CR may be innacurate use with care</string>
+    <string name="dc">DC</string>
 </resources>
