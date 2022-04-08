@@ -1,7 +1,7 @@
 package com.example.dndmonstereditor.modelhelpers
 
 
-import android.util.Log
+
 import com.example.dndmonstereditor.model.monsterDetails.Action
 
 //helper functions for use with action objects
@@ -39,10 +39,12 @@ class ActionHelper (private val action: Action?) {
                     val split3 = split[1].split("saving throw")
 
                     if(split3.size > 1) {
-                        val split4 = split3[1].split(" (")[1].split(") ")
-                        additionalEffects.damage = split4[0]
-                        additionalEffects.desc = split4[1]
-                        return additionalEffects
+                        try {
+                            val split4 = split3[1].split(" (")[1].split(") ")
+                            additionalEffects.damage = split4[0]
+                            additionalEffects.desc = split4[1]
+                            return additionalEffects
+                        }catch (e:Exception) {return null}
                     }
                     else{
                         additionalEffects.damage = "0d0+0"
@@ -57,7 +59,7 @@ class ActionHelper (private val action: Action?) {
         return null
     }
 
-    fun changeAdditionalEffectsDamage(newDamage:String){
+    fun changeAdditionalEffectsDamage(newDamage:String) {
         if (isAttack()) {
             if (action == null) return
             val split = action.desc.split("DC ")
@@ -73,7 +75,6 @@ class ActionHelper (private val action: Action?) {
                 }
             }
         }
-        Log.d("AH", "changeAdditionalEffectsDamage: "+ (action?.desc ?: ""))
     }
 
     fun changeAdditionalEffectsDC(newDC:String){
@@ -89,7 +90,14 @@ class ActionHelper (private val action: Action?) {
 
             action.desc=holdString
         }
-        Log.d("AH", "changeAdditionalEffectsDamage: "+ (action?.desc ?: ""))
+    }
+
+    fun setVariableWeaponDamage(){
+            val split = action?.desc?.split(" (")
+            val split2 = split?.get(1)?.split(") ")
+            val result = split2!![0].split(" ")
+
+            action?.damage?.get(0)?.damage_dice= result[0]+result[1]+result[2]
     }
 
 }

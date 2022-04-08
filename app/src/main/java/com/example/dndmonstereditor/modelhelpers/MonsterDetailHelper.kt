@@ -33,13 +33,13 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         if (multiAttack!=null) {
             var attacks = mutableListOf<String>()
 
-
             for (options in multiAttack.options.from!!) {
-                for (x in 1..options.a.count) attacks.add(options.a.name)
-                for (x in 1..options.b.count) attacks.add(options.b.name)
-                for (x in 1..options.c.count) attacks.add(options.c.name)
-                for (x in 1..options.d.count) attacks.add(options.d.name)
-                for (x in 1..options.e.count) attacks.add(options.e.name)
+                if (options.a.count=="Number of Heads") options.a.count=5
+                for (x in 1..(options.a.count as Number).toInt() ) attacks.add(options.a.name)
+                for (x in 1..(options.b.count as Number).toInt()) attacks.add(options.b.name)
+                for (x in 1..(options.c.count as Number).toInt()) attacks.add(options.c.name)
+                for (x in 1..(options.d.count as Number).toInt()) attacks.add(options.d.name)
+                for (x in 1..(options.e.count as Number).toInt()) attacks.add(options.e.name)
 
                 val currentDamage=damagePerTurn(attacks)
 
@@ -66,7 +66,6 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         for (attack in attacks){
             val aHelper=ActionHelper(findActionByName(attack))
             val addedEffects = aHelper.findAdditionalEffects()
-            Log.d("MDH", "damagePerTurn: "+addedEffects?.dc)
             if (addedEffects!=null) damage+=(CalculationHelper.getAverageDamage(CalculationHelper.getDice(addedEffects.damage))*addedEffects.dc)/25
            damage+= CalculationHelper.getAverageDamage(aHelper.getDice())
         }

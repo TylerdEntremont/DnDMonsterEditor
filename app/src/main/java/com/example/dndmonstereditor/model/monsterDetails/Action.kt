@@ -1,5 +1,6 @@
 package com.example.dndmonstereditor.model.monsterDetails
 
+import com.google.gson.annotations.SerializedName
 
 
 data class Action(

@@ -13,7 +13,6 @@ import com.example.dndmonstereditor.model.monsterDetails.Action
 import com.example.dndmonstereditor.modelhelpers.ActionHelper
 import com.example.dndmonstereditor.modelhelpers.CalculationHelper
 
-
 //adapter class for the actions recycle viewer in the details fragment
 //holds attacks and standard actions
 class ActionItemAdapter (
@@ -105,21 +104,26 @@ class ActionHolder(private val binding: ActionListItemBinding): RecyclerView.Vie
 class AttackHolder (private val binding: AttackListItemBinding): RecyclerView.ViewHolder(binding.root){
 
      fun bind (attack: Action?){
+
          val helper = ActionHelper(attack)
-         binding.attackName.text=attack?.name.toString()
+
+         if (attack!!.damage[0].damage_dice=="null")helper.setVariableWeaponDamage()
+         if (attack.damage[0].damage_dice==null)helper.setVariableWeaponDamage()
+
+
+         binding.attackName.text=attack.name
          val dice = helper.getDice()
-         binding.toHitET.setText(attack?.attack_bonus.toString())
+         binding.toHitET.setText(attack.attack_bonus.toString())
          binding.diceNumber.setText(dice.number.toString())
          binding.diceSize.setText(dice.size.toString())
          binding.bonus.setText(dice.bonus.toString())
+
 
          binding.toHitET.addTextChangedListener(object:TextWatcher{
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 if (attack != null) {
                      if (binding.toHitET.text.toString()!="")attack.attack_bonus=binding.toHitET.text.toString().toInt()
-                 }
              }
              override fun afterTextChanged(p0: Editable?) {}
 
@@ -129,9 +133,7 @@ class AttackHolder (private val binding: AttackListItemBinding): RecyclerView.Vi
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 if (attack != null) {
-                     attack.damage?.get(0)?.damage_dice = diceString()
-                 }
+                     attack.damage[0].damage_dice = diceString()
              }
              override fun afterTextChanged(p0: Editable?) {}
 
@@ -141,9 +143,7 @@ class AttackHolder (private val binding: AttackListItemBinding): RecyclerView.Vi
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 if (attack != null) {
-                     attack.damage?.get(0)?.damage_dice = diceString()
-                 }
+                     attack.damage[0].damage_dice = diceString()
              }
              override fun afterTextChanged(p0: Editable?) {}
 
@@ -153,10 +153,8 @@ class AttackHolder (private val binding: AttackListItemBinding): RecyclerView.Vi
              override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
              override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 if (attack != null) {
-                     attack.damage?.get(0)?.damage_dice = diceString()
+                     attack.damage[0].damage_dice = diceString()
 
-                 }
              }
              override fun afterTextChanged(p0: Editable?) {}
 
@@ -176,9 +174,14 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
 
     fun bind (attack: Action?){
         val helper = ActionHelper(attack)
-        binding.attackName.text=attack?.name.toString()
+        helper.setVariableWeaponDamage()
+
+        if (attack!!.damage[0].damage_dice=="null")helper.setVariableWeaponDamage()
+        if (attack.damage[0].damage_dice==null)helper.setVariableWeaponDamage()
+
+        binding.attackName.text=attack.name
         val dice = helper.getDice()
-        binding.toHitET.setText(attack?.attack_bonus.toString())
+        binding.toHitET.setText(attack.attack_bonus.toString())
         binding.diceNumber.setText(dice.number.toString())
         binding.diceSize.setText(dice.size.toString())
         binding.bonus.setText(dice.bonus.toString())
@@ -197,9 +200,7 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (attack != null) {
                     if (binding.toHitET.text.toString()!="")attack.attack_bonus=binding.toHitET.text.toString().toInt()
-                }
             }
             override fun afterTextChanged(p0: Editable?) {}
 
@@ -209,9 +210,7 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (attack != null) {
-                    attack.damage?.get(0)?.damage_dice = diceString()
-                }
+                    attack.damage[0].damage_dice = diceString()
             }
             override fun afterTextChanged(p0: Editable?) {}
 
@@ -221,9 +220,7 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (attack != null) {
-                    attack.damage?.get(0)?.damage_dice = diceString()
-                }
+                    attack.damage[0].damage_dice = diceString()
             }
             override fun afterTextChanged(p0: Editable?) {}
 
@@ -233,10 +230,7 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (attack != null) {
-                    attack.damage?.get(0)?.damage_dice = diceString()
-
-                }
+                    attack.damage[0].damage_dice = diceString()
             }
             override fun afterTextChanged(p0: Editable?) {}
 
@@ -246,10 +240,8 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (attack != null) {
                     val aHelper=ActionHelper(attack)
                     aHelper.changeAdditionalEffectsDamage(addedDiceString())
-                }
             }
             override fun afterTextChanged(p0: Editable?) {}
 
@@ -259,10 +251,8 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (attack != null) {
                     val aHelper=ActionHelper(attack)
                     aHelper.changeAdditionalEffectsDamage(addedDiceString())
-                }
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -271,10 +261,8 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (attack != null) {
                     val aHelper=ActionHelper(attack)
                     aHelper.changeAdditionalEffectsDamage(addedDiceString())
-                }
             }
             override fun afterTextChanged(p0: Editable?) {}
         })
@@ -283,12 +271,10 @@ class AttackAdditionalEffectsHolder (private val binding: AttackWithAdditionalLi
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (attack != null) {
                     val aHelper=ActionHelper(attack)
                     if (binding.dcET.text.toString()!="") {
                         aHelper.changeAdditionalEffectsDC(binding.dcET.text.toString())
                     }
-                }
             }
             override fun afterTextChanged(p0: Editable?) {}
         })

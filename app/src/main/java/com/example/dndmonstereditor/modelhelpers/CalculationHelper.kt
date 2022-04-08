@@ -10,7 +10,7 @@ object CalculationHelper {
     fun getDice (diceString:String):Dice{
 
         val split1 = diceString.split("d")
-        if (split1.size<2)return Dice(0,0, split1[0].toInt())
+        if (split1.size<2)return Dice(0,0, 0)
         var split2 = split1[1].split("+")
         var sign=1
 
