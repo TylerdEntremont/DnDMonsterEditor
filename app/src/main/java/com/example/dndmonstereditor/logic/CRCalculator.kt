@@ -1,7 +1,6 @@
 package com.example.dndmonstereditor.logic
 
 
-import android.util.Log
 import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
 import com.example.dndmonstereditor.modelhelpers.MonsterDetailHelper
 import java.util.Collections.max

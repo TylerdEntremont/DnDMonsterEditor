@@ -13,7 +13,10 @@ class ActionHelper (private val action: Action?) {
         if (isAttack()){
 
             if (action==null) return Dice (0,0,0)
-            return CalculationHelper.getDice(action.damage[0].damage_dice)
+            if (action.damage==null) return Dice (0,0,0)
+            return if (action.damage[0].damage_dice!=null) {
+                CalculationHelper.getDice(action.damage[0].damage_dice!!)
+            } else Dice(0,0,0)
         }
         else{
             return Dice(0,0,0)
