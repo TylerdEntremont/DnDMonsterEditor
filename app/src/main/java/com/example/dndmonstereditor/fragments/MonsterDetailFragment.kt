@@ -79,6 +79,7 @@ class MonsterDetailFragment : Fragment() {
                         setDelete()
                         val helper = MonsterDetailHelper(monster)
                         helper.putAttacksString(changes!!.monster.attacks)
+                        helper.putAdditionalsString(changes!!.monster.additionals)
                         monster.armor_class= changes!!.monster.ac
                         monster.hit_points= changes!!.monster.hp
                         monster.challenge_rating = changes!!.monster.cr.toFloat()
@@ -91,7 +92,6 @@ class MonsterDetailFragment : Fragment() {
                         setSaves(helper,monster, changes!!.monster.wis,"WIS")
                         setSaves(helper,monster, changes!!.monster.cha,"CHA")
 
-                        Log.d("MDF", "onCreateView: "+monster.proficiencies.toString())
                     }
 
                     bind(monster)
@@ -260,8 +260,9 @@ class MonsterDetailFragment : Fragment() {
 
         //saves the changes to the monster to the database upon user clicking the save button
         binding.saveButton.setOnClickListener {
-
-            val attacks = MonsterDetailHelper(monsterDetails).getAttacksString()
+            val helper = MonsterDetailHelper(monsterDetails)
+            val attacks = helper.getAttacksString()
+            val additionals = helper.getAdditionalsString()
 
             val changes = SavedMonsterChanges(
                 monsterDetails.index,
@@ -274,7 +275,8 @@ class MonsterDetailFragment : Fragment() {
             helper.getProficiency("Saving Throw: CON")?:((monsterDetails.constitution-10)/2),
             helper.getProficiency("Saving Throw: INT")?:((monsterDetails.intelligence-10)/2),
             helper.getProficiency("Saving Throw: WIS")?:((monsterDetails.wisdom-10)/2),
-            helper.getProficiency("Saving Throw: CHA")?:((monsterDetails.charisma-10)/2)
+            helper.getProficiency("Saving Throw: CHA")?:((monsterDetails.charisma-10)/2),
+                additionals
             )
 
             monsterViewModel.saveToDataBase(MonsterDBItem(binding.saveName.text.toString(),changes))

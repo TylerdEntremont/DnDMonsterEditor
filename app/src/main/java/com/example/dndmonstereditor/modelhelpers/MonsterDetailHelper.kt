@@ -1,9 +1,11 @@
 package com.example.dndmonstereditor.modelhelpers
 
+import android.util.Log
 import com.example.dndmonstereditor.model.monsterDetails.Action
 import com.example.dndmonstereditor.model.monsterDetails.MonsterDetails
 import com.example.dndmonstereditor.model.monsterDetails.Proficiency
 import com.example.dndmonstereditor.model.monsterDetails.SpecialAbility
+
 
 //helper class for actions performed on the full set of monster details
 class MonsterDetailHelper (val monster: MonsterDetails) {
@@ -31,13 +33,13 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
         if (multiAttack!=null) {
             var attacks = mutableListOf<String>()
 
-
             for (options in multiAttack.options.from!!) {
-                for (x in 1..options.a.count) attacks.add(options.a.name)
-                for (x in 1..options.b.count) attacks.add(options.b.name)
-                for (x in 1..options.c.count) attacks.add(options.c.name)
-                for (x in 1..options.d.count) attacks.add(options.d.name)
-                for (x in 1..options.e.count) attacks.add(options.e.name)
+                if (options.a.count=="Number of Heads") options.a.count=5
+                for (x in 1..(options.a.count as Number).toInt() ) attacks.add(options.a.name)
+                for (x in 1..(options.b.count as Number).toInt()) attacks.add(options.b.name)
+                for (x in 1..(options.c.count as Number).toInt()) attacks.add(options.c.name)
+                for (x in 1..(options.d.count as Number).toInt()) attacks.add(options.d.name)
+                for (x in 1..(options.e.count as Number).toInt()) attacks.add(options.e.name)
 
                 val currentDamage=damagePerTurn(attacks)
 
@@ -62,7 +64,10 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
     private fun damagePerTurn(attacks:List<String>): Int{
         var damage=0
         for (attack in attacks){
-           damage+= CalculationHelper.getAverageDamage(ActionHelper(findActionByName(attack)).getDice())
+            val aHelper=ActionHelper(findActionByName(attack))
+            val addedEffects = aHelper.findAdditionalEffects()
+            if (addedEffects!=null) damage+=(CalculationHelper.getAverageDamage(CalculationHelper.getDice(addedEffects.damage))*addedEffects.dc)/25
+           damage+= CalculationHelper.getAverageDamage(aHelper.getDice())
         }
 
         return damage
@@ -112,6 +117,32 @@ class MonsterDetailHelper (val monster: MonsterDetails) {
             }
         }
 
+    }
+
+    //gets the string that stores the additional effects in the database
+    fun getAdditionalsString():String{
+        var additionals=""
+        for (action in monster.actions){
+            val stuff=ActionHelper(action).findAdditionalEffects()
+            additionals+= (stuff?.dc ?: 10).toString() +","
+            additionals+= stuff?.damage +":"
+        }
+        return additionals
+    }
+
+    fun putAdditionalsString(additionals:String){
+        val split1 = additionals.split(":")
+        var i=0
+        for (action in monster.actions) {
+            val helper=ActionHelper(action)
+            if (helper.findAdditionalEffects()!=null){
+                val split2=split1[i].split(",")
+                helper.changeAdditionalEffectsDC(split2[0])
+                helper.changeAdditionalEffectsDamage(split2[1])
+                i++
+            }
+
+        }
     }
 
     //get the value of a proficiency from the monster by the proficiencies name

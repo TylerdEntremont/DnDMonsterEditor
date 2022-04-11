@@ -2,7 +2,7 @@ package com.example.dndmonstereditor.model.monsterDetails
 
 
 data class X(
-    val count: Int,
+    var count: Any,
     val name: String,
     val type: String
 )

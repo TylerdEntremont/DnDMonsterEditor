@@ -1,5 +1,6 @@
 package com.example.dndmonstereditor.model.monsterDetails
 
+import com.google.gson.annotations.SerializedName
 
 
 data class Action(
@@ -7,7 +8,7 @@ data class Action(
     val attacks: List<Attack>,
     val damage: List<Damage>,
     val dc: Dc,
-    val desc: String,
+    var desc: String,
     val name: String,
     val options: Options,
     val usage: Usage
