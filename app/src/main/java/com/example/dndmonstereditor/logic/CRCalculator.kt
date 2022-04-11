@@ -52,7 +52,8 @@ class CRCalculator(private val monster:MonsterDetails) {
             else->(toHit-4)*2.0
         }
 
-        val saveCR = when (val save:Int = max(listOf(strSV,dexSV,conSV,intSV,wisSV,chaSV))){
+        //val saveCR = when (val save:Int = max(listOf(strSV,dexSV,conSV,intSV,wisSV,chaSV))){
+        val saveCR= when(val save:Int = (strSV+2*dexSV+2*conSV+intSV+2*wisSV+chaSV)/9){
             in -3..1 -> 0.0
             2 -> 0.25
             3 -> 1.0
