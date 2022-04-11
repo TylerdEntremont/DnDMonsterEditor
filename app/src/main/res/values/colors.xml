@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="blue_as_dictated_by_Rose">#f2dfd7</color>
+    <color name="other_colour_from_Rose">#7d66ff</color>
 </resources>
