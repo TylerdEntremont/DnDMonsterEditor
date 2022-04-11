@@ -11,6 +11,5 @@ Current State: The app is functional in all cases and provides useful feedback i
 
 Future Work:
   Handle Spell Casters
-  Add a search function fo the SRD list to make finding desired monster easier
   Add functionality to change CR and get new stats
   Add handling for special abilities effect on CR
